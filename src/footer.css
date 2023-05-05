@@ -1,0 +1,63 @@
+.footer{
+  height: 65px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  padding: 20px;
+  background-color: #282828;
+}
+
+.footer_left {
+  display: flex;
+  align-items: center;
+  color: white;
+  width: 30%;
+}
+
+.footer_albumLogo {
+  height: 60px;
+  width: 60px;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
+.footer_songInfo > h4 {
+  margin-bottom: 5px;
+}
+
+.footer_songInfo > p {
+  font-size: 12px;
+}
+
+.footer_center{
+  color: white;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 300px;
+  padding: 0 100px;
+}
+
+.footer_icon:hover,
+.footer_green:hover {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.2) ;
+}
+
+.footer_green {
+  color: #1ed15e;
+}
+
+.footer_right{
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.footer_right * .MuiSlider-root {
+  color: green;
+}

@@ -1,0 +1,85 @@
+.body {
+  padding: 30px;
+  flex: 0.8;
+  height: 100vh;
+  color: white;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
+  overflow-y: overlay;
+}
+.body::-webkit-scrollbar {
+  display: none;
+}
+.body_info {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+.body_info > img {
+  height: 15vw;
+  margin: 0 20px;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+}
+.body_infoText {
+  flex: 1;
+}
+
+.body_infoText > h2 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.body_infoText > p {
+  font-size: 14px;
+}
+
+.body_shuffle {
+  font-size: 80px !important;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.body_icons {
+  display: flex;
+  align-items: center;
+}
+
+.body_icons > .MuiSvgIcon-root {
+  margin-right: 20px;
+}
+
+.body_shuffle:hover {
+  transition: 100ms transform ease-in;
+  transform: scale(1.08);
+}
+
+.tracks {
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
+.row {
+  padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
+}
+.row:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.col {
+  display: flex;
+  align-items: center;
+  color: #dddcdc;
+}
+.col img {
+  height: 40px;
+  width: 40px;
+}
+
+.detail {
+  display: flex;
+  gap: 1rem;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
