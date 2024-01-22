@@ -12,7 +12,6 @@ import axios from 'axios'
 function Body() {
 
   const [{token, top_Songs ,selectedPlaylistId }, dispatch]  = useDataLayerValue();
-  console.log('hello', top_Songs )
   useEffect(()=>{
     const getInitialPlaylist = async () => {
       const response = await axios.get(

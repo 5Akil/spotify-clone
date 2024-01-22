@@ -3,7 +3,7 @@
     justify-content: space-between;
     margin-bottom: 30px;
     margin-top: 20px;
-    
+
 }
 
 .header_left {
@@ -16,20 +16,16 @@
     align-items: center;
 }
 
-.header_left > input {
+.header_left>input {
     border: none;
     width: 100%;
 }
-.header_left > input:focus{
+
+.header_left>input:focus {
     outline: none;
 }
 
-
-.header_right {
-    display: flex;
-    align-items: center;
-} 
-  
-.header_right > h4 {
-    margin-left: 10px;
+.header_right .text {
+    margin-left: 10px !important;
+    color: white !important;
 }

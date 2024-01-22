@@ -30,7 +30,6 @@ function Footer() {
           },
         }
       );
-      console.log('track',response);
       if (response.data !== "") {
         const currentPlaying = {
           id: response.data.item.id,
@@ -38,7 +37,6 @@ function Footer() {
           artists: response.data.item.artists.map((artist) => artist.name),
           image: response.data.item.album.images[2].url,
         };
-        console.log('lodu', currentPlaying)
         dispatch({ type:'SET_PLAYING', currentPlaying });
       } else {
         dispatch({ type:'SET_PLAYING', currentPlaying: null });

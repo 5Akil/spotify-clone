@@ -2,7 +2,6 @@ import React from "react";
 import "./SongRow.css";
 
 function SongRow({ track, playSong }) {
-  // console.log("hey", track);
   const msToMinutesAndSeconds = (ms) => {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
