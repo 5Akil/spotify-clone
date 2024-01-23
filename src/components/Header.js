@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import "./header.css";
-import { useDataLayerValue } from './DataLayer'
+import "../styling/header.css";
+import { useDataLayerValue } from '../app_context/DataLayer'
 import SearchIcon from '@mui/icons-material/Search'
 import Avatar from '@mui/material/Avatar';
 import { Button, Fade, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate()
   const [{ user }, dispatch] = useDataLayerValue();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -15,12 +16,12 @@ function Header() {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    
+
   };
-  
-  const handleLogout=()=>{
+
+  const handleLogout = () => {
     localStorage.clear()
-    
+    navigate('/')
     setAnchorEl(null);
   }
 
@@ -55,7 +56,7 @@ function Header() {
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={()=>handleLogout}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>
     </div>

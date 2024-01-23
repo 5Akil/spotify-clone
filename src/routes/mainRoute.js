@@ -1,6 +1,6 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Login from "../Login";
-import Player from "../Player";
+import Login from "../components/Login";
+import Player from "../components/Player";
 
 export const MainRoutes = createBrowserRouter([
     {

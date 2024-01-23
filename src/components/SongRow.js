@@ -1,5 +1,5 @@
 import React from "react";
-import "./SongRow.css";
+import "../styling/SongRow.css";
 
 function SongRow({ track, playSong }) {
   const msToMinutesAndSeconds = (ms) => {

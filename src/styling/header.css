@@ -3,7 +3,6 @@
     justify-content: space-between;
     margin-bottom: 30px;
     margin-top: 20px;
-
 }
 
 .header_left {
@@ -28,4 +27,8 @@
 .header_right .text {
     margin-left: 10px !important;
     color: white !important;
+}
+
+.header_right button {
+    padding: 0px;
 }

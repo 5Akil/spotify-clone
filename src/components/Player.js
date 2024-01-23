@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import Sidebar from "./Sidebar";
 import Body from "./Body";
 import Footer from "./Footer";
-import "./player.css";
+import Sidebar from './Sidebar'
+import "../styling/player.css";
 import { useNavigate } from "react-router-dom";
-import { useDataLayerValue } from "./DataLayer";
+import { useDataLayerValue } from "../app_context/DataLayer";
 
 function Player() {
   const navigate = useNavigate()

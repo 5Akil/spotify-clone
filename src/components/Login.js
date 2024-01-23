@@ -1,9 +1,9 @@
 
 import React, { useEffect } from 'react'
-import './login.css'
-import { getTokenFromUrl, loginUrl } from './Spotify';
-import logo from './pngwing.com (1).png'
-import { useDataLayerValue } from './DataLayer';
+import '../styling/login.css'
+import { getTokenFromUrl, loginUrl } from '../app_context/Spotify';
+import logo from '../logo/pngwing.com (1).png'
+import { useDataLayerValue } from '../app_context/DataLayer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
