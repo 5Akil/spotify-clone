@@ -6,6 +6,15 @@
   z-index: 100;
   color: white;
 }
+.current {
+  margin-left: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  color: #1ed15e;
+  cursor: pointer;
+}
 
 .songRow:hover {
   cursor: pointer;

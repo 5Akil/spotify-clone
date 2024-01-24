@@ -1,5 +1,5 @@
 .footer{
-  height: 65px;
+  height: 40px;
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -44,6 +44,7 @@
 .footer_green:hover {
   transition: transform 0.2s ease-in-out;
   transform: scale(1.2) ;
+  color: #1ed15e;
 }
 
 .footer_green {

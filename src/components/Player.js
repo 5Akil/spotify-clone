@@ -16,6 +16,7 @@ function Player() {
   }, [token])
 
   return (
+    token ?
     <div className="player">
       <div className="player_body">
         <Sidebar />
@@ -23,6 +24,7 @@ function Player() {
       </div>
       <Footer />
     </div>
+     : null
   );
 }
 

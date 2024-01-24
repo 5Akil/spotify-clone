@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import '../styling/footer.css'
 import { useDataLayerValue } from '../app_context/DataLayer'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import SkilNextIcon from '@mui/icons-material/SkipNext'
 import ShuffleIcon from '@mui/icons-material/Shuffle'
@@ -15,91 +16,114 @@ import axios from 'axios'
 
 function Footer() {
 
-  const [{ token, currentPlaying }, dispatch] = useDataLayerValue();
+  const [{ token, currentPlaying, isPlaying }, dispatch] = useDataLayerValue();
+  const getCurrentTrack = async () => {
+    const response = await axios.get(
+      "https://api.spotify.com/v1/me/player/currently-playing",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    console.log(response.data);
+    if (response.data !== "") {
+      const currentPlaying = {
+        id: response.data.item.id,
+        name: response.data.item.name,
+        artists: response.data.item.artists.map((artist) => artist.name),
+        image: response.data.item.album.images[2].url,
+        isPlaying: response.data.is_playing,
+        duration: response.data.item.duration_ms
+      };
+      dispatch({ type: 'SET_PLAYING', currentPlaying });
+      dispatch({ type: 'SET_IS_PLAYING', isPlaying: response.data.is_playing });
+    }
+    else {
+      dispatch({ type: 'SET_PLAYING', currentPlaying: null });
+    }
+  };
+  const handlePlaybackState = async (type) => {
+    const response = await axios.put(
+      `https://api.spotify.com/v1/me/player/${type}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+    if (response.status === 204) {
+      dispatch({ type: "SET_IS_PLAYING", isPlaying: !isPlaying })
+    }
+  }
+  const changeTrack = async (type) => {
+    const response = await axios.post(
+      `https://api.spotify.com/v1/me/player/${type}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+    if (response.status === 204) {
+      getCurrentTrack();
+    }
+  }
 
   useEffect(() => {
-      // get current playing track
-      const getCurrentTrack = async () => {
-        const response = await axios.get(
-          "https://api.spotify.com/v1/me/player/currently-playing",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        if (response.data !== "") {
-          const currentPlaying = {
-            id: response.data.item.id,
-            name: response.data.item.name,
-            artists: response.data.item.artists.map((artist) => artist.name),
-            image: response.data.item.album.images[2].url,
-          };
-          dispatch({ type: 'SET_PLAYING', currentPlaying });
-        } else {
-          dispatch({ type: 'SET_PLAYING', currentPlaying: null });
-        }
-      };
-      getCurrentTrack();
-
+    getCurrentTrack();
   }, [token, dispatch]);
 
   return (
-    <div className='footer'>
-      <div className='footer_left'>
-        <img className='footer_albumLogo' src={currentPlaying?.image} alt={currentPlaying?.name} />
-
-        {currentPlaying ? (
+    currentPlaying ?
+      <div className='footer'>
+        <div className='footer_left'>
+          <img className='footer_albumLogo' src={currentPlaying?.image} alt={currentPlaying?.name} />
 
           <div className='footer_songInfo'>
             <h4>{currentPlaying.name}</h4>
-            <p>{currentPlaying.artists}</p>
+            <p>{currentPlaying.artists.join(', ')}</p>
           </div>
+        </div>
+        <div className='footer_center'>
+          <ShuffleIcon className='footer_green' />
+          <SkipPreviousIcon className='footer_icon' onClick={() => changeTrack("previous")} />
 
+          {
+            isPlaying ? (
 
-        ) : (
-          <div className="footer_songInfo">
-            <h4>No song is playing</h4>
-            <p>...</p>
-          </div>
-        )}
-      </div>
-      <div className='footer_center'>
-        <ShuffleIcon className='footer_green' />
-        <SkipPreviousIcon className='footer_icon' />
+              <PauseCircleIcon
+                fontSize='large'
+                className='footer_icon '
+                onClick={() => handlePlaybackState("pause")}
+              />
+            ) : (
+              <PlayCircleOutlineIcon
+                fontSize="large"
+                className="footer__icon"
+                onClick={() => handlePlaybackState("play")}
+              />
+            )
+          }
 
-        {
-          currentPlaying ? (
-
-            <PlayCircleOutlineIcon
-              fontSize='large'
-              className='footer_icon ' />
-          ) : (
-            <PlayCircleOutlineIcon
-
-              fontSize="large"
-              className="footer__icon" />
-          )
-        }
-
-        <SkilNextIcon className='footer_icon' />
-        <RepeatIcon className='footer_green' />
-      </div>
-      <div className='footer_right'>
-        <Grid container spacing={2}>
-          <Grid item>
-            <PlaylistPlayIcon />
+          <SkilNextIcon className='footer_icon' onClick={() => changeTrack("next")} />
+          <RepeatIcon className='footer_green' />
+        </div>
+        <div className='footer_right'>
+          <Grid container spacing={2}>
+            <Grid item>
+              <PlaylistPlayIcon />
+            </Grid>
+            <Grid item>
+              <VolumeDownIcon />
+            </Grid>
+            <Grid item xs>
+              <Slider sx={{ maxWidth: "70%" }} />
+            </Grid>
           </Grid>
-          <Grid item>
-            <VolumeDownIcon />
-          </Grid>
-          <Grid item xs>
-            <Slider />
-          </Grid>
-        </Grid>
-      </div>
-    </div>
+        </div>
+      </div> : null
   )
 }
 

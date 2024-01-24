@@ -3,6 +3,7 @@
     justify-content: space-between;
     margin-bottom: 30px;
     margin-top: 20px;
+    align-items: center;
 }
 
 .header_left {
@@ -13,6 +14,7 @@
     border-radius: 30px;
     color: gray;
     align-items: center;
+    height: 1.5rem;
 }
 
 .header_left>input {

@@ -27,7 +27,7 @@ function Sidebar() {
           return { name, id, images };
         });
         dispatch({ type: "SET_PLAYLISTS", playlists });
-        dispatch({ type: 'SET_SELECTED_PLAYLIST', id: playlists?.[0]?.id })
+        dispatch({ type: 'SET_SELECTED_PLAYLIST_ID', id: playlists?.[0]?.id })
       };
       getPlaylistData();
     }

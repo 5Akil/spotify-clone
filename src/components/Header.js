@@ -16,7 +16,6 @@ function Header() {
   };
   const handleClose = () => {
     setAnchorEl(null);
-
   };
 
   const handleLogout = () => {

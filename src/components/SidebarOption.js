@@ -4,14 +4,9 @@ import { useDataLayerValue } from "../app_context/DataLayer";
 
 function SidebarOption({ title, Icon, img, index, playlistID }) {
   const [{selectedPlaylistId }, dispatch] = useDataLayerValue()
-  console.log(playlistID);
   const handlePlaylist = () => {
-    console.log(playlistID);
-    dispatch({type:'SET_SELECTED_PLAYLIST' ,id : playlistID })
+    dispatch({type:'SET_SELECTED_PLAYLIST_ID' ,id : playlistID })
   }
-
-  console.log(selectedPlaylistId,'<<<<<<<<<<,');
-
   return (
     <div className="sidebarOption" onClick={playlistID ? handlePlaylist : null} >
       {Icon && <Icon className="sidebarOption_icon" />}
